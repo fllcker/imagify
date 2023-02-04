@@ -25,4 +25,6 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
+
+    public Image(String source) { this.source = source; }
 }
