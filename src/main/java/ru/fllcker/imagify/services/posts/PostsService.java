@@ -1,6 +1,5 @@
 package ru.fllcker.imagify.services.posts;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,14 +21,13 @@ import java.util.Optional;
 public class PostsService {
     private final IPostsRepository postsRepository;
     private final UsersService usersService;
-    private final ObjectMapper objectMapper;
 
     public Optional<Post> findById(int id) {
         return postsRepository.findById(id);
     }
 
     public Post create(String ae, CreatePostDto createPostDto) {
-        Post post = objectMapper.convertValue(createPostDto, Post.class);
+        Post post = new Post(createPostDto.getDescription());
 
         User owner = usersService.findByEmail(ae)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));

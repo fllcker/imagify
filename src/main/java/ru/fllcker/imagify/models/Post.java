@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity(name = "posts")
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Getter @Setter
 public class Post {
     @Id
