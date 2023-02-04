@@ -17,4 +17,6 @@ public interface IPostsRepository extends JpaRepository<Post, Integer> {
     @Query("update posts p set p.description = ?1 where p.id = ?2")
     void updateDescriptionById(String description, int id);
     List<Post> findPostsByOwner(User owner);
+
+    
 }

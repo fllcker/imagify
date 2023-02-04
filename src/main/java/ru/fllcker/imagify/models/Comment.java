@@ -7,6 +7,7 @@ import java.time.Instant;
 
 @Entity(name = "comments")
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Getter @Setter
 public class Comment {
     @Id
