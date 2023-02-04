@@ -32,7 +32,10 @@ public class SecurityConfig {
                         authz -> authz
                                 .requestMatchers(
                                         "/api/auth/login",
-                                        "/api/auth/signup").permitAll()
+                                        "/api/auth/signup",
+                                        "/swagger",
+                                        "/swagger-ui",
+                                        "/swagger-ui/index.html").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
