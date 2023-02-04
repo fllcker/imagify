@@ -26,4 +26,9 @@ public class Subscription {
     @ManyToOne
     @JoinColumn(name = "target_id", referencedColumnName = "id")
     private User target;
+
+    public Subscription(User owner, User target) {
+        this.owner = owner;
+        this.target = target;
+    }
 }
