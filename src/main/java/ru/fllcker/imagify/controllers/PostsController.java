@@ -12,7 +12,6 @@ import ru.fllcker.imagify.dto.UpdatePostDto;
 import ru.fllcker.imagify.models.Post;
 import ru.fllcker.imagify.services.auth.AuthService;
 import ru.fllcker.imagify.services.posts.PostsService;
-
 import java.util.List;
 
 @RestController
@@ -32,10 +31,22 @@ public class PostsController {
         return ResponseEntity.ok(post);
     }
 
+    @GetMapping("id/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Integer id) {
+        Post post = postsService.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found!"));
+        return ResponseEntity.ok(post);
+    }
+
     @GetMapping("user/posts")
     public ResponseEntity<List<Post>> getUserPosts() {
         String ae = authService.getAuthInfo().getEmail();
-        List<Post> posts = postsService.getUsersPosts(ae);
+
+        var posts = postsService.getUsersPosts(ae);
+        posts.sort((o1, o2) -> Integer.compare(o2.getLikes().size(), o1.getLikes().size()));
+        posts.sort((o1, o2) -> Integer.compare(o2.getComments().size(), o1.getComments().size()));
+        posts.sort((o1, o2) -> Long.compare(o2.getCreatedAt().toEpochMilli(), o1.getCreatedAt().toEpochMilli()));
+
         return ResponseEntity.ok(posts);
     }
 
