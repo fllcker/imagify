@@ -8,4 +8,13 @@
 
 
 
-Imagify is a service for sharing and saving images that can inspire you.
+<h1>Functional</h1>
+
+<li>Authorization with Spring Security, JWT</li>
+<li>Users, Posts, Images, Likes, Comments, Subscriptions CRUD</li>
+<li> + Uploading images</li>
+
+
+<h1>Technologies</h1>
+<li>Spring (data, security, web, boot)</li>
+<li>PostgreSQL</li>
